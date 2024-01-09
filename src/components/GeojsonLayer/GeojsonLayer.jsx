@@ -22,7 +22,7 @@ export const GeojsonLayer = ({ url }) => {
   const { setVisibleDataValue } = useContext(VisibleDataContext);
   const { setActivePointValue } = useContext(ActivePointContext);
 
-  // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (url) {
       const abortController = new AbortController();

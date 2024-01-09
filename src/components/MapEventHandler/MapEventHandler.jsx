@@ -17,7 +17,7 @@ export const MapEventHandler = () => {
   let visibleArray = [];
 
   const map = useMap();
-  // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (map) {
       map.on('moveend', () => {
