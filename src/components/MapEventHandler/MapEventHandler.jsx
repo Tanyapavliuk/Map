@@ -10,7 +10,7 @@ import {
 let bounds = null;
 
 export const MapEventHandler = () => {
-  const { data, setDataValue } = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const { setVisibleDataValue } = useContext(VisibleDataContext);
   const { setActivePointValue } = useContext(ActivePointContext);
   const { setClickPointValue } = useContext(ClickPoint);
@@ -19,6 +19,7 @@ export const MapEventHandler = () => {
   const visibleArrayRef = useRef([]);
   const map = useMap();
 
+  // eslint-disable-next-line
   useEffect(() => {
     const updateVisibleArray = () => {
       if (map) {
@@ -64,14 +65,7 @@ export const MapEventHandler = () => {
         map.off('click');
       }
     };
-  }, [
-    map,
-    data,
-    setDataValue,
-    setActivePointValue,
-    setClickPointValue,
-    setVisibleDataValue,
-  ]);
+  }, [map, data]);
 
   return null;
 };
