@@ -15,11 +15,9 @@ export const MapEventHandler = () => {
   const { setActivePointValue } = useContext(ActivePointContext);
   const { setClickPointValue } = useContext(ClickPoint);
 
-  // Використовуємо useRef для створення постійних посилань на стан
   const visibleArrayRef = useRef([]);
   const map = useMap();
 
-  // eslint-disable-next-line
   useEffect(() => {
     const updateVisibleArray = () => {
       if (map) {
@@ -65,7 +63,7 @@ export const MapEventHandler = () => {
         map.off('click');
       }
     };
-  }, [map, data]);
+  }, [map, data, setActivePointValue, setClickPointValue, setVisibleDataValue]);
 
   return null;
 };
