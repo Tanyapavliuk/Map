@@ -1,0 +1,102 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id":"1",
+        "scalerank": 2,
+        "name": "Модульний Будинок",
+        "description": "Це саме те місце, де неодмінно треба фотографуватися. Якщо ви хочете зробити яскраві, незвичайні кадри – вам сюди.",
+        "image":"https://modulex.ua/wp-content/uploads/2017/06/Custom-Home-2-1024x680.jpg", 
+        "lat_y": 50.456551700133275,
+        "long_x": 30.51210389825655,
+        "featureclass": "waterfall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [50.456551700133275, 30.51210389825655]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id":"2",
+        "scalerank": 2,
+        "name": "Невеликий модульний будинок",
+        "description": "Будинок у стилі модерн здається на довготривалу оренду.",
+        "image":"https://lk.cottage.ru/storage/articles/260/260359/5fccbca8e1468b36c84fc0b39caf219f.jpg?v=1602765804", 
+        "lat_y": 50.445077,
+        "long_x": 30.5285887,
+        "featureclass": "waterfall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [50.445077, 30.5285887]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {
+        "id":"3",
+        "scalerank": 3,
+        "name": "Затишний дерев'яний будинок",
+        "description": "Поруч знаходиться озеро та ліс. Виготовлений будинок з дубу",
+        "image":"https://www.dom-exclusive.ru/upload/iblock/569/56905e54722099aa10eb38a32b034610.jpg", 
+        "lat_y": 48.6163,
+        "long_x": 23.68364,
+        "featureclass": "waterfall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [48.6163, 23.68364]
+      }
+    },  {
+      "type": "Feature",
+      "properties": {
+        "id":"4",
+        "scalerank": 3,
+        "name": "Затишна квартирка 2км",
+        "description": "Простора, світла квартира 80кв. Спальня та простора вітальня",
+        "image":"https://solodesgroup.com/wp-content/uploads/2021/10/1-1-2.jpg", 
+        "lat_y": 51.5579155,
+        "long_x": 27.6039305,
+        "featureclass": "waterfall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [51.5579155, 27.6039305]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {
+        "id":"5",
+        "scalerank": 3,
+        "name": "Сучасна квартира",
+        "description": "Це сучасна двокімнатна квартира в самому центрі міста, розташована на восьмому поверсі елітного житлового комплексу. ",
+        "image":"https://konkurent.ua/media/uploads/prev/2018/10/11/16/52/55/7e08bc73cd3cb4c3ff1f859259789c94.png", 
+        "lat_y": 46.006213,
+        "long_x": 34.758855,
+        "featureclass": "waterfall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [46.006213, 34.758855]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {
+        "id":"6",
+        "scalerank": 3,
+        "name": "Маленька, затишна однокімнатка",
+        "description": "Квартира оснащена високошвидкісним Інтернетом, кондиціонером та системою 'розумний будинок'",
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUVTo7hfSruXmTiuOLQ9Wb0yM-XRQJ0RBfA&usqp=CAU", 
+        "lat_y": 49.857321,
+        "long_x": 25.6471705,
+        "featureclass": "waterfall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [49.857321, 25.6471705]
+      }
+    }]
+}
