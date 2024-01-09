@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 import {
   ActivePointContext,
@@ -14,33 +14,33 @@ export const MapEventHandler = () => {
   const { setVisibleDataValue } = useContext(VisibleDataContext);
   const { setActivePointValue } = useContext(ActivePointContext);
   const { setClickPointValue } = useContext(ClickPoint);
-  let visibleArray = [];
 
+  // Використовуємо useRef для створення постійних посилань на стан
+  const visibleArrayRef = useRef([]);
   const map = useMap();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
-    if (map) {
-      map.on('moveend', () => {
+    const updateVisibleArray = () => {
+      if (map) {
         bounds = map.getBounds();
 
-        data.forEach(element => {
-          if (
+        const newVisibleArray = data.filter(
+          element =>
             element.properties.lat_y <= bounds._northEast.lat &&
             element.properties.lat_y >= bounds._southWest.lat &&
             element.properties.long_x <= bounds._northEast.lng &&
             element.properties.long_x >= bounds._southWest.lng
-          ) {
-            const inArray = visibleArray.find(
-              el => el.properties.id === element.properties.id
-            );
-            if (!inArray) {
-              visibleArray.push(element);
-              setVisibleDataValue(visibleArray);
-            }
-          }
-        });
-      });
+        );
+
+        setVisibleDataValue(newVisibleArray);
+        visibleArrayRef.current = newVisibleArray;
+      }
+    };
+
+    if (map) {
+      map.on('moveend', updateVisibleArray);
     }
+
     map.on('click', event => {
       const { lat, lng } = event.latlng;
 
@@ -56,9 +56,11 @@ export const MapEventHandler = () => {
       }
     });
 
+    updateVisibleArray();
+
     return () => {
       if (map) {
-        map.off('moveend');
+        map.off('moveend', updateVisibleArray);
         map.off('click');
       }
     };
@@ -70,5 +72,6 @@ export const MapEventHandler = () => {
     setClickPointValue,
     setVisibleDataValue,
   ]);
+
   return null;
 };

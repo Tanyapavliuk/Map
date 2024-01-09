@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Icon } from 'leaflet';
 import { Marker, Popup, FeatureGroup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -18,18 +18,25 @@ var fetchData = function fetchData(url, options) {
 };
 
 export const GeojsonLayer = ({ url }) => {
-  const { data, setDataValue } = useContext(DataContext);
-  const { setVisibleDataValue } = useContext(VisibleDataContext);
+  const { data } = useContext(DataContext);
   const { setActivePointValue } = useContext(ActivePointContext);
+  const { setVisibleDataValue: setVisibleDataValueContext } =
+    useContext(VisibleDataContext);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Використовуємо useRef для створення постійних посилань на функції
+  const setDataValueRef = useRef();
+  setDataValueRef.current = useContext(DataContext).setDataValue;
+
+  const setVisibleDataValueRef = useRef();
+  setVisibleDataValueRef.current = setVisibleDataValueContext;
+
   useEffect(() => {
     if (url) {
       const abortController = new AbortController();
 
       fetchData(url, { signal: abortController.signal }).then(data => {
-        setDataValue(data);
-        setVisibleDataValue(data);
+        setDataValueRef.current(data);
+        setVisibleDataValueRef.current(data);
       });
 
       return () => {
