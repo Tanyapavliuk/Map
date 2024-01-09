@@ -44,11 +44,8 @@ export const MapEventHandler = () => {
   }, [map, data, setVisibleDataValue]);
 
   useEffect(() => {
-    // Викликаємо функцію при ініціалізації компонента
     updateVisibleArray();
-
     const handleMoveEnd = () => {
-      // Викликаємо функцію при русі картою
       updateVisibleArray();
     };
 

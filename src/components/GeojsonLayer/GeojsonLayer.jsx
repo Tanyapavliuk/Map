@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
 import { Icon } from 'leaflet';
 import { Marker, Popup, FeatureGroup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -22,20 +22,27 @@ export const GeojsonLayer = ({ url }) => {
   const { setVisibleDataValue } = useContext(VisibleDataContext);
   const { setActivePointValue } = useContext(ActivePointContext);
 
+  const updateDataAndVisibleData = useCallback(
+    async abortController => {
+      try {
+        const fetchedData = await fetchData(url, {
+          signal: abortController.signal,
+        });
+        setDataValue(fetchedData);
+        setVisibleDataValue(fetchedData);
+      } catch (error) {}
+    },
+    [url, setDataValue, setVisibleDataValue]
+  );
+
   useEffect(() => {
-    if (url) {
-      const abortController = new AbortController();
+    const abortController = new AbortController();
+    updateDataAndVisibleData(abortController);
 
-      fetchData(url, { signal: abortController.signal }).then(data => {
-        setDataValue(data);
-        setVisibleDataValue(data);
-      });
-
-      return () => {
-        abortController.abort();
-      };
-    }
-  }, [url]);
+    return () => {
+      abortController.abort();
+    };
+  }, [url, updateDataAndVisibleData]);
 
   return (
     <FeatureGroup>
