@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { SimpleGrid } from '@chakra-ui/react';
-import { ActivePointContext, DataContext, VisibleDataContext } from 'Providers';
+import { ActivePointContext, VisibleDataContext } from 'Providers';
 import { PointItem } from 'components/PointItem';
 
 export const ListPoints = () => {
