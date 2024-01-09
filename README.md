@@ -4,7 +4,7 @@
 можливість легко додавати власні мітки та переглядати інформацію про існуючі
 мітки на карті.
 
-<a href=""><img src="https://i.ibb.co/c8Qjzrw/Screenshot-3.jpg" alt="site"/></a>
+<a href="https://tanyapavliuk.github.io/Map/" target='_blank'><img src="https://i.ibb.co/c8Qjzrw/Screenshot-3.jpg" alt="site"/></a>
 
 ## Author
 
