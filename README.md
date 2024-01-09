@@ -40,5 +40,5 @@
 <!-- LINKS  -->
 
 [Leaflet.js]:
-  https://img.shields.io/badge/leaflet-%23fff?style=for-the-badge&logo=Leaflet&&label=leaflet&labelColor=%23199900&color=%23fff
+  https://img.shields.io/badge/leaflet-%23fff?style=for-the-badge&logo=Leaflet&&label=leaflet&labelColor=%23199900
 [Formik.js]: https://img.shields.io/badge/Formik-172B4D?style=for-the-badge

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
 import { useMap } from 'react-leaflet';
 import {
   ActivePointContext,
@@ -14,33 +14,45 @@ export const MapEventHandler = () => {
   const { setVisibleDataValue } = useContext(VisibleDataContext);
   const { setActivePointValue } = useContext(ActivePointContext);
   const { setClickPointValue } = useContext(ClickPoint);
-  let visibleArray = [];
 
   const map = useMap();
-  useEffect(() => {
-    if (map) {
-      map.on('moveend', () => {
-        bounds = map.getBounds();
 
-        data.forEach(element => {
-          if (
-            element.properties.lat_y <= bounds._northEast.lat &&
-            element.properties.lat_y >= bounds._southWest.lat &&
-            element.properties.long_x <= bounds._northEast.lng &&
-            element.properties.long_x >= bounds._southWest.lng
-          ) {
-            const inArray = visibleArray.find(
-              el => el.properties.id === element.properties.id
-            );
-            if (!inArray) {
-              visibleArray.push(element);
-              setVisibleDataValue(visibleArray);
-            }
+  // Функція, яка оновлює visibleArray
+  const updateVisibleArray = useCallback(() => {
+    if (map) {
+      bounds = map.getBounds();
+      const newVisibleArray = [];
+
+      data.forEach(element => {
+        if (
+          element.properties.lat_y <= bounds._northEast.lat &&
+          element.properties.lat_y >= bounds._southWest.lat &&
+          element.properties.long_x <= bounds._northEast.lng &&
+          element.properties.long_x >= bounds._southWest.lng
+        ) {
+          const inArray = newVisibleArray.find(
+            el => el.properties.id === element.properties.id
+          );
+          if (!inArray) {
+            newVisibleArray.push(element);
           }
-        });
+        }
       });
+
+      setVisibleDataValue(newVisibleArray);
     }
-    map.on('click', event => {
+  }, [map, data, setVisibleDataValue]);
+
+  useEffect(() => {
+    // Викликаємо функцію при ініціалізації компонента
+    updateVisibleArray();
+
+    const handleMoveEnd = () => {
+      // Викликаємо функцію при русі картою
+      updateVisibleArray();
+    };
+
+    const handleClick = event => {
       const { lat, lng } = event.latlng;
 
       setClickPointValue(lat, lng);
@@ -53,12 +65,17 @@ export const MapEventHandler = () => {
       if (!clickedMarker) {
         setActivePointValue(null);
       }
-    });
+    };
+
+    if (map) {
+      map.on('moveend', handleMoveEnd);
+      map.on('click', handleClick);
+    }
 
     return () => {
       if (map) {
-        map.off('moveend');
-        map.off('click');
+        map.off('moveend', handleMoveEnd);
+        map.off('click', handleClick);
       }
     };
   }, [
@@ -68,6 +85,8 @@ export const MapEventHandler = () => {
     setActivePointValue,
     setClickPointValue,
     setVisibleDataValue,
+    updateVisibleArray,
   ]);
+
   return null;
 };

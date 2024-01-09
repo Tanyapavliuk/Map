@@ -43,6 +43,13 @@ export const AddPoint = () => {
   });
   return (
     <>
+      <Button
+        onClick={() => setClickPointValue(null, null)}
+        colorScheme="green"
+        variant="outline"
+      >
+        Відмінити дію
+      </Button>
       <Button onClick={onOpen} colorScheme="green">
         Додати мітку
       </Button>
