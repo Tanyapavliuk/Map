@@ -11,7 +11,7 @@ export const MapComponent = () => {
 
   return (
     <MapContainer
-      style={{ height: '500px', width: '700px' }}
+      style={{ height: '600px', width: '900px' }}
       center={centerPosition}
       zoom={6}
       scrollWheelZoom={true}

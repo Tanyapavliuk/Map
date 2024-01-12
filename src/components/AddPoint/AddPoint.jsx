@@ -43,16 +43,18 @@ export const AddPoint = () => {
   });
   return (
     <>
-      <Button
-        onClick={() => setClickPointValue(null, null)}
-        colorScheme="green"
-        variant="outline"
-      >
-        Відмінити дію
-      </Button>
-      <Button onClick={onOpen} colorScheme="green">
-        Додати мітку
-      </Button>
+      <div style={{ display: 'flex', gap: 12 }}>
+        <Button
+          onClick={() => setClickPointValue(null, null)}
+          colorScheme="green"
+          variant="outline"
+        >
+          Відмінити дію
+        </Button>
+        <Button onClick={onOpen} colorScheme="green">
+          + Додати оголошення
+        </Button>
+      </div>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -61,7 +63,7 @@ export const AddPoint = () => {
             <form onSubmit={formik.handleSubmit}>
               <VStack spacing={4} align="flex-start">
                 <FormControl>
-                  <FormLabel htmlFor="password">Назва</FormLabel>
+                  <FormLabel htmlFor="password">Заголовок оголошення</FormLabel>
                   <Input
                     id="name"
                     name="name"
@@ -73,7 +75,9 @@ export const AddPoint = () => {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="password">Опис будівлі</FormLabel>
+                  <FormLabel htmlFor="password">
+                    Опис будівлі, квартири або приміщення
+                  </FormLabel>
                   <Input
                     id="description"
                     name="description"
