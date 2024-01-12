@@ -1,6 +1,6 @@
-import { Heading, Image, Stack, Text } from '@chakra-ui/react';
+import { Heading, Image, Stack } from '@chakra-ui/react';
 
-import { Card, CardWrap } from './PointItem.styled';
+import { Card, CardWrap, Description } from './PointItem.styled';
 
 export const PointItem = ({ data }) => {
   const { id, name, description, image } = data;
@@ -15,9 +15,9 @@ export const PointItem = ({ data }) => {
           borderRadius="full"
         />
 
-        <Stack mt="6" spacing="3">
+        <Stack spacing="3">
           <Heading size="md">{name}</Heading>
-          <Text fontSize="xs">{description}</Text>
+          <Description className="scroll">{description}</Description>
         </Stack>
       </CardWrap>
     </Card>
